@@ -5,6 +5,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Date;
+import java.sql.Time;
 import java.util.Optional;
 
 @Repository
@@ -17,17 +19,26 @@ public class SessionDAO {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    private final RowMapper<SessionInfo> sessionInfoRowMapper = (rs, rowNum) ->
-            SessionInfo.builder()
-                    .sesionId(rs.getInt(1))
-                    .fecha((rs.getDate(2)).toLocalDate())
-                    .horaInicio((rs.getTime(3)).toLocalTime())
-                    .horaFin((rs.getTime(4)).toLocalTime())
-                    .remoteIp(rs.getString(5))
-                    .usuarioId(rs.getInt(6))
-                    .activa(rs.getString(7))
-                    .truncada(rs.getString(8))
-                    .build();
+    private final RowMapper<SessionInfo> sessionInfoRowMapper = (rs, rowNum) -> {
+        int sesionId = rs.getInt("SESION_ID");
+        Date fecha = rs.getDate("FECHA");
+        Time horaInicio = rs.getTime("HORA_INICIO");
+        Time horaFin = rs.getTime("HORA_FIN");
+        String remoteIp = rs.getString("REMOTE_IP");
+        int usuarioId = rs.getInt("USUARIO_ID");
+        String activa = rs.getString("ACTIVA");
+        String truncada = rs.getString("TRUNCADA");
+        return SessionInfo.builder()
+                .sesionId(sesionId)
+                .fecha(fecha != null ? fecha.toLocalDate() : null)
+                .horaInicio(horaInicio != null ? horaInicio.toLocalTime() : null)
+                .horaFin(horaFin != null ? horaFin.toLocalTime() : null)
+                .remoteIp(remoteIp)
+                .usuarioId(usuarioId)
+                .activa(activa)
+                .truncada(truncada)
+                .build();
+    };
 
     public Optional<SessionInfo> getSessionInfo(Integer sessionId) {
         return jdbcTemplate.query(SP_SESSION_S_BY_ID, sessionInfoRowMapper, sessionId)

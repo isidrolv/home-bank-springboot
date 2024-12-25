@@ -3,9 +3,9 @@ package com.homebank.api.controller;
 import com.homebank.api.dto.LoginRequest;
 import com.homebank.api.entity.UserSession;
 import com.homebank.api.service.LoginService;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,18 +25,18 @@ public class LoginController {
     }
 
     @PostMapping(value = "/login")
-    public ResponseEntity<UserSession> login(@RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<UserSession> login(@Valid @RequestBody LoginRequest loginRequest) {
         log.info("LoginController.login() called");
         try {
             return ResponseEntity
                     .ok(
-                           loginService.getUserSession(loginRequest)
+                            loginService.getUserSession(loginRequest)
                     );
         } catch (SQLException e) {
             e.printStackTrace();
             return ResponseEntity
-                    .status(HttpStatus.PRECONDITION_FAILED)
-                    .body(UserSession.builder().token(e.getMessage()).isLoggedIn(false).build());
+                    .status(HttpStatus.UNAUTHORIZED)
+                    .body(UserSession.builder().message(e.getMessage()).isLoggedIn(false).build());
 
         }
     }

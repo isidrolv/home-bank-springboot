@@ -1,0 +1,37 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor User as usr #red
+participant "UI LoginComponent" as UILogin #blue
+participant "UI LoginService" as UILoginSvc #blue
+participant "LoginController" as LoginController #orange
+participant "LoginService" as LoginService #orange
+participant "LoginDAO" as LoginDAO #orange
+database "LOGIN.SP" as LOGIN #green
+database "VALIDA_PASSWORD" as VALIDA_PASSWORD #green
+database "USUARIO_PWD" as USUARIO_PWD #green
+database "ENTRAR_A_SESION" as ENTRAR_A_SESION #green
+database "SESIONES_SO" as SESIONES_SO #green
+
+
+usr -> UILogin: Open Login Page
+UILogin -> UILoginSvc: Submit - Authentication Request
+UILoginSvc -> LoginController: Authentication Request
+LoginController -> LoginService: Authentication Request
+LoginService -> LoginDAO: Authentication Request
+LoginDAO -> LOGIN: Authentication Request
+LOGIN -> VALIDA_PASSWORD: Authentication Request
+VALIDA_PASSWORD -> USUARIO_PWD: Authentication Request
+USUARIO_PWD --> VALIDA_PASSWORD: Authentication Response
+VALIDA_PASSWORD --> LOGIN: Authentication Response
+LOGIN -> ENTRAR_A_SESION: Authentication Request
+ENTRAR_A_SESION -> SESIONES_SO: Usuario Id
+ENTRAR_A_SESION -> SESIONES_IU: New Session Info
+ENTRAR_A_SESION --> LOGIN: Session Id
+
+
+Alice -> Bob: Another authentication Request
+Alice <-- Bob: another authentication Request
+@enduml

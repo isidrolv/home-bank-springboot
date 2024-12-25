@@ -8,6 +8,7 @@ import com.homebank.api.dto.LoginResponse;
 import com.homebank.api.dto.SessionInfo;
 import com.homebank.api.dto.UserInfo;
 import com.homebank.api.entity.UserSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.security.SecureRandom;
@@ -22,26 +23,18 @@ public class LoginService {
     private final UserDAO userDAO; // Added UserDAO dependency
     private final SessionDAO sessionDAO; // Added SessionDAO dependency
 
-    public LoginService(LoginDAO loginDAO, UserDAO userDAO, SessionDAO sessionDAO) {
+    final
+    SessionMapper mapper;
+
+    public LoginService(LoginDAO loginDAO, UserDAO userDAO, SessionDAO sessionDAO, SessionMapper mapper) {
         this.loginDAO = loginDAO;
         this.userDAO = userDAO; // Assign UserDAO
         this.sessionDAO = sessionDAO; // Assign SessionDAO
-    }
-
-    public String generateToken() {
-        SecureRandom random = new SecureRandom();
-        StringBuilder token = new StringBuilder(TOKEN_LENGTH);
-
-        for (int i = 0; i < TOKEN_LENGTH; i++) {
-            int index = random.nextInt(CHARACTERS.length());
-            token.append(CHARACTERS.charAt(index));
-        }
-
-        return token.toString();
+        this.mapper = mapper;
     }
 
     public UserSession getUserSession(LoginRequest loginRequest) throws SQLException {
-        SessionMapper mapper = new SessionMapper();
+
 
         Optional<LoginResponse> optionalLoginResponse = loginDAO.login(loginRequest);
         LoginResponse loginInfo = optionalLoginResponse.orElseGet(() -> LoginResponse.builder().build());

@@ -1,5 +1,7 @@
 package com.homebank.api.entity;
 
+import com.homebank.api.dto.SessionInfo;
+import com.homebank.api.dto.UserInfo;
 import lombok.Builder;
 import lombok.Data;
 
@@ -21,11 +23,16 @@ import lombok.Data;
 @Data
 @Builder
 public class UserSession {
-    private String username;
-    private String password;
+    private Integer usuarioId;
+    private UserInfo userInfo;
+    private SessionInfo sessionInfo;
     private boolean isLoggedIn;
+    private Integer sessionId;
     private String date;
     private String loginTime;
     private String token;
     private String tokenExpiryTime;
+    private String remoteIp;
+    private Integer ok;
+    private String message;
 }

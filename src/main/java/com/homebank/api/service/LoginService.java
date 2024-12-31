@@ -3,10 +3,7 @@ package com.homebank.api.service;
 import com.homebank.api.dao.LoginDAO;
 import com.homebank.api.dao.SessionDAO;
 import com.homebank.api.dao.UserDAO;
-import com.homebank.api.dto.LoginRequest;
-import com.homebank.api.dto.LoginResponse;
-import com.homebank.api.dto.SessionInfo;
-import com.homebank.api.dto.UserInfo;
+import com.homebank.api.dto.*;
 import com.homebank.api.entity.UserSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,6 +44,11 @@ public class LoginService {
         } else {
             throw new SQLException(loginInfo.getMsg());
         }
+    }
+
+    public LogoutResponse logout(Integer sessionId) {
+        return loginDAO.logout(sessionId)
+                .orElseGet(() -> LogoutResponse.builder().build());
     }
 
 }

@@ -30,8 +30,13 @@ LOGIN -> ENTRAR_A_SESION: Authentication Request
 ENTRAR_A_SESION -> SESIONES_SO: Usuario Id
 ENTRAR_A_SESION -> SESIONES_IU: New Session Info
 ENTRAR_A_SESION --> LOGIN: Session Id
+LOGIN --> LoginDAO: Authentication response [UserSession]
+LoginDAO --> LoginService: Authentication response [UserSession]
+LoginService --> LoginController: Authentication response [UserSession]
+LoginController --> UILoginSvc: Authentication response [UserSession]
+UILoginSvc --> UILogin: Authentication response [UserSession]
+UILogin -> usr: Redirect to Home Page
 
 
-Alice -> Bob: Another authentication Request
-Alice <-- Bob: another authentication Request
+
 @enduml

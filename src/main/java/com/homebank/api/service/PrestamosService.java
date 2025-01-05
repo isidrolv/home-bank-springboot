@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @Service
 public class PrestamosService {
@@ -17,11 +16,8 @@ public class PrestamosService {
         this.prestamosDAO = prestamosRepository;
     }
 
-    public List<Prestamo> getPrestamos() {
-        return prestamosDAO.findAll()
-                .stream()
-                .map(this::mapToPrestamo)
-                .collect(Collectors.toList());
+    public List<Prestamo> getPrestamosByClienteId(Long clienteId) {
+        return prestamosDAO.findAllByClienteId(clienteId);
     }
 
     private Prestamo mapToPrestamo(Map<String, Object> stringObjectMap) {
@@ -35,6 +31,14 @@ public class PrestamosService {
                 .atraso90(false).atraso120(false).atraso150(false)
                 .atraso180(false).atraso360(false)
                 .build();
+    }
+
+    public List<Prestamo> getPrestamos() {
+        return prestamosDAO.findAll();
+    }
+
+    public List<Prestamo> getPrestamosById(Long prestamoId) {
+        return prestamosDAO.findByPrestamoId(prestamoId);
     }
 
 }

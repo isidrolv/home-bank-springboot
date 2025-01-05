@@ -31,10 +31,13 @@ public class LoginController {
                             loginService.getUserSession(loginRequest)
                     );
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("Error during user login: {}", e.getMessage(), e);
             return ResponseEntity
                     .status(HttpStatus.UNAUTHORIZED)
-                    .body(UserSession.builder().message(e.getMessage()).isLoggedIn(false).build());
+                    .body(UserSession.builder()
+                            .message(e.getMessage())
+                            .isLoggedIn(false)
+                            .build());
 
         }
     }

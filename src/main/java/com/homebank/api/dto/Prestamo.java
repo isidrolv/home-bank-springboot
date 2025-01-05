@@ -1,10 +1,13 @@
 package com.homebank.api.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDate;
 
@@ -38,6 +41,7 @@ public class Prestamo {
     private LocalDate fechaCorte;
     private Double tasaInteres;
     private Double interesMoratorio;
+    private Integer planDePagoId;
     private PlanDePago planDePago;
     private String estatus;
     private String tipo;

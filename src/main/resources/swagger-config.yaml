@@ -1,0 +1,52 @@
+openapi: 3.1.0
+info:
+  title: Home Bank REST Api
+  description: Home Bank REST Api
+  version: 1.0.0
+servers:
+  - url: 'https://localhost:8080'
+paths:
+  /login:
+    post:
+      summary: Login to the application
+      description: Authenticates the user and provides a token for subsequent requests.
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  example: "user@example.com"
+                password:
+                  type: string
+                  example: "password123"
+                remoteIp:
+                  type: string
+                  example: "127.0.0.1"
+              required:
+                - username
+                - password
+      responses:
+        '200':
+          description: Successfully logged in.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    example: "ey...example.jwt.token"
+                  expiration:
+                    type: string
+                    format: date-time
+                    example: "2023-10-30T12:34:56Z"
+        '401':
+          description: Invalid username or password.
+        '500':
+          description: Internal server error.

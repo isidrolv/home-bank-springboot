@@ -14,10 +14,7 @@ Este proyecto es un banco doméstico desarrollado con Spring Boot. Proporciona u
 - Angular
 - Firebird
 
-### Licencia
-Aquí tienes la información básica de una licencia **GNU General Public License (GPL)** para tu software:  
-
----
+# Licencia
 
 ## **Licencia GNU General Public License (GPL) - Versión 3, 29 de junio de 2007**  
 

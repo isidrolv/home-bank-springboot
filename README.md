@@ -16,18 +16,28 @@ Este proyecto es un banco doméstico desarrollado con Spring Boot. Proporciona u
 
 # Licencia
 
-## **Licencia GNU General Public License (GPL) - Versión 3, 29 de junio de 2007**  
+GNU GENERAL PUBLIC LICENSE
+Version 3, 29 June 2017
 
-**Copyright (C) [2024] [Isidro Leos Viscencio]**  
+Copyright (C) [Año] [Isidro Leos Viscencio]
 
-Este programa es software libre: puedes redistribuirlo y/o modificarlo bajo los términos de la **Licencia Pública General de GNU** publicada por la **Free Software Foundation**, ya sea la versión 3 de la Licencia o (según tu elección) cualquier versión posterior.  
+Todo el mundo tiene permiso para copiar y distribuir copias literales de este documento de licencia, pero no está permitido modificarlo.
 
-Este programa se distribuye con la esperanza de que sea útil, pero **SIN NINGUNA GARANTÍA**; incluso sin la garantía implícita de **COMERCIALIZACIÓN** o **ADECUACIÓN PARA UN PROPÓSITO PARTICULAR**. Para más detalles, consulta la **Licencia Pública General de GNU**.  
+### **PREÁMBULO**
 
-Debes haber recibido una copia de la **Licencia Pública General de GNU** junto con este programa. Si no, consulta <https://www.gnu.org/licenses/>.  
+La Licencia Pública General GNU es una licencia de software libre que garantiza la libertad de usar, compartir y modificar el software licenciado bajo sus términos. Esta licencia está diseñada para proteger la libertad de los usuarios y asegurar que el software siga siendo libre para todos sus usuarios.
 
----
+### **CONDICIONES Y DERECHOS**
 
-Si deseas agregar esta licencia a tu código, incluye un archivo `LICENSE` en el repositorio con este contenido o colócala en los encabezados de tus archivos fuente con un comentario adecuado (por ejemplo, `/* ... */` en C/C++ o `# ...` en Python).  
+1. **Libertad para Usar:** Puedes usar el software con cualquier propósito.
+2. **Libertad para Distribuir:** Puedes distribuir copias del software, con o sin modificaciones, siempre que respetes los términos de la GPL.
+3. **Acceso al Código Fuente:** Si distribuyes copias del software, debes proporcionar el código fuente o garantizar su acceso.
+4. **Modificación y Compartición:** Puedes modificar el software y distribuirlo bajo la misma licencia GPL.
+5. **Sin Restricciones Adicionales:** No puedes imponer restricciones adicionales a los derechos otorgados por la GPL.
 
-Si necesitas una versión específica de la GPL (por ejemplo, GPL-2.0 o GPL-3.0) o una licencia más permisiva como la LGPL, dime y te ayudaré a generarla. 🚀
+### **AUSENCIA DE GARANTÍAS**
+
+Este software se proporciona "TAL CUAL", sin garantías de ningún tipo, expresas o implícitas, incluyendo pero no limitándose a garantías de comerciabilidad o adecuación a un propósito particular. Para más detalles, consulta la licencia completa en:
+
+[https://www.gnu.org/licenses/gpl-3.0.html](https://www.gnu.org/licenses/gpl-3.0.html)
+

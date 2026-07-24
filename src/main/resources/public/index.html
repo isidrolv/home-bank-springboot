@@ -1,10 +1,135 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Turn a campaign brief into a complete creative direction.">
+    <title>Northstar — Campaign Concept Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@1,6..72,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/app.js" defer></script>
 </head>
 <body>
-<t1>Hola Mundito!</t1>
+<header class="topbar">
+    <a class="brand" href="/" aria-label="Northstar home">
+        <span class="brand-mark">N</span>
+        <span>Northstar</span>
+    </a>
+    <div class="status-pill"><span></span> OpenAI connected server-side</div>
+</header>
+
+<main>
+    <section class="intro">
+        <p class="eyebrow">Campaign concept studio</p>
+        <h1>From loose brief to<br><em>launch-ready direction.</em></h1>
+        <p class="lede">Shape the strategy, copy, rollout, and visual world of your next campaign in one focused workspace.</p>
+    </section>
+
+    <div class="studio-grid">
+        <section class="brief-panel" aria-labelledby="brief-heading">
+            <div class="section-heading">
+                <span>01</span>
+                <div><h2 id="brief-heading">The brief</h2><p>Give the studio just enough signal.</p></div>
+            </div>
+
+            <form id="campaign-form">
+                <label>Campaign brief <span>What should this campaign achieve?</span>
+                    <textarea id="brief" maxlength="1200" required placeholder="Launch a summer membership that turns everyday movement into a shared ritual."></textarea>
+                </label>
+
+                <div class="field-row">
+                    <label>Target audience
+                        <textarea id="audience" maxlength="600" required placeholder="Urban professionals, 28–40, who want consistency without gym culture."></textarea>
+                    </label>
+                    <label>Product details
+                        <textarea id="product" maxlength="900" required placeholder="A flexible fitness membership with classes, tracking, and guest passes."></textarea>
+                    </label>
+                </div>
+
+                <label>Tone
+                    <select id="tone" required>
+                        <option value="">Choose a voice</option>
+                        <option>Warm and optimistic</option>
+                        <option>Bold and provocative</option>
+                        <option>Quietly premium</option>
+                        <option>Playful and irreverent</option>
+                        <option>Clear and authoritative</option>
+                    </select>
+                </label>
+
+                <fieldset>
+                    <legend>Desired channels <span>Select all that apply</span></legend>
+                    <div class="channel-grid">
+                        <label><input type="checkbox" value="Instagram"><span>Instagram</span></label>
+                        <label><input type="checkbox" value="LinkedIn"><span>LinkedIn</span></label>
+                        <label><input type="checkbox" value="Email"><span>Email</span></label>
+                        <label><input type="checkbox" value="Paid social"><span>Paid social</span></label>
+                        <label><input type="checkbox" value="Website"><span>Website</span></label>
+                        <label><input type="checkbox" value="Out of home"><span>Out of home</span></label>
+                    </div>
+                </fieldset>
+
+                <button class="generate-button" type="submit">
+                    <span>Build campaign direction</span>
+                    <span class="arrow">↗</span>
+                </button>
+                <p class="form-note">Text and visuals are generated together. This can take up to a few minutes.</p>
+            </form>
+        </section>
+
+        <section class="output-panel" aria-live="polite">
+            <div id="empty-state" class="state-card empty-state">
+                <div class="orbit"><span></span><i></i></div>
+                <p class="eyebrow">Creative space</p>
+                <h2>Your direction will take shape here.</h2>
+                <p>Complete the brief to generate a concept, channel-ready copy, a launch plan, and two original campaign visuals.</p>
+            </div>
+
+            <div id="loading-state" class="state-card loading-state" hidden>
+                <div class="loader"><span></span><span></span><span></span></div>
+                <p class="eyebrow">Studio in session</p>
+                <h2 id="loading-title">Finding the strategic thread…</h2>
+                <div class="progress"><i></i></div>
+                <p>Concept and copy come first, then the visual directions.</p>
+            </div>
+
+            <div id="error-state" class="state-card error-state" hidden>
+                <span class="error-icon">!</span>
+                <p class="eyebrow">Something interrupted the session</p>
+                <h2>We couldn’t build this direction.</h2>
+                <p id="error-message"></p>
+                <button id="retry-button" type="button">Try again</button>
+            </div>
+
+            <article id="result" class="result" hidden>
+                <div class="result-masthead">
+                    <p class="eyebrow">Campaign direction</p>
+                    <h2 id="concept-name"></h2>
+                    <p id="concept"></p>
+                    <div class="angle"><span>Strategic angle</span><p id="strategic-angle"></p></div>
+                </div>
+
+                <section>
+                    <div class="result-heading"><span>01</span><h3>Copy system</h3></div>
+                    <div id="copy-variants" class="copy-stack"></div>
+                </section>
+
+                <section>
+                    <div class="result-heading"><span>02</span><h3>Visual world</h3></div>
+                    <div id="image-grid" class="image-grid"></div>
+                </section>
+
+                <section>
+                    <div class="result-heading"><span>03</span><h3>Launch checklist</h3></div>
+                    <div id="checklist" class="checklist"></div>
+                </section>
+            </article>
+        </section>
+    </div>
+</main>
+
+<footer><span>Northstar / Campaign Studio</span><span>Strategy, language, image — in one pass.</span></footer>
 </body>
 </html>
